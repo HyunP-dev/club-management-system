@@ -1,0 +1,63 @@
+<li class="nav-item">
+    <!--    <a data-bs-toggle="collapse" role="button" href="#member-menus"-->
+    <!--       class="nav-link text-white" aria-current="page">-->
+    <!--        <b>부원 관리</b>-->
+    <!--    </a>-->
+    <a role="button" href="#member-menus"
+       class="nav-link text-white" aria-current="page">
+        <b>부원 관리</b>
+    </a>
+    <div class="submenu collapse" id="member-menus">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">부원 통계</li>
+            <li class="nav-item">모든 부원 조회</li>
+<!--            <li class="nav-item">부원 정보 변경</li>-->
+            <span style="height: 5px;"></span>
+        </ul>
+    </div>
+</li>
+<li class="nav-item">
+    <a role="button" href="#events-menus"
+       class="nav-link text-white" aria-current="page">
+        <b>활동 관리</b>
+    </a>
+    <div class="submenu collapse" id="events-menus">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">모든 동아리 활동 조회</li>
+            <li class="nav-item">활동 별 출석 관리</li>
+<!--            <li class="nav-item">동아리 활동 변경</li>-->
+            <span style="height: 5px;"></span>
+        </ul>
+    </div>
+</li>
+<li class="nav-item">
+    <a role="button" href="#accountancy-menus"
+       class="nav-link text-white" aria-current="page">
+        <b>회계 관리</b>
+    </a>
+    <div class="submenu collapse" id="accountancy-menus">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">지출 등록</li>
+            <li class="nav-item">가입비 납부 관리</li>
+            <li class="nav-item">활동 참여비 관리</li>
+            <li class="nav-item">동아리 활동 변경</li>
+            <span style="height: 5px;"></span>
+        </ul>
+    </div>
+</li>
+<script>
+    window.onload = () => {
+        let navItems = [...document.querySelectorAll(".nav-item")]
+        navItems.forEach(navItem => {
+            let submenu = navItem.querySelector(".submenu")
+            $(submenu).collapse("show")
+            // $(submenu).collapse("hide")
+            // navItem.onmouseenter = event => {
+            //     $(submenu).collapse("show")
+            // }
+            // navItem.onmouseleave = event => {
+            //     $(submenu).collapse("hide")
+            // }
+        })
+    }
+</script>

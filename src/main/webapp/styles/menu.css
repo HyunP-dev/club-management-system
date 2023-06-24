@@ -1,0 +1,13 @@
+.submenu {
+  padding-left: 25px;
+}
+.submenu .nav-item {
+  margin: 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+.submenu .choose {
+  background-color: #0D6EFD;
+}
+
+/*# sourceMappingURL=menu.css.map */

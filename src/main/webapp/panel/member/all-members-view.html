@@ -1,0 +1,69 @@
+<div class="right-panel-window">
+    <h4 style="font-weight: bold;">모든 부원 조회</h4>
+    <hr>
+    <table id="myTable" class="table last-is-btns" width="100%">
+        <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th data-orderable="false"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+            <td>
+<!--                <button class="btn btn-tiny btn-secondary" onclick="modifyMember('Hello')">편집</button>-->
+                <button class="btn btn-tiny btn-danger" onclick="kickMember('Hello')">강퇴</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+            <td>
+<!--                <button class="btn btn-tiny btn-secondary" onclick="alert('Hello')">편집</button>-->
+                <button class="btn btn-tiny btn-danger">강퇴</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<style>
+    .btn-tiny {
+        padding: .4rem .4rem;
+        font-size: .875rem;
+        line-height: .5;
+        border-radius: .2rem;
+    }
+</style>
+<script>
+    $('#myTable').DataTable();
+</script>
+<span style="height: 5px; display: block;"></span>
+
+<script>
+    function kickMember() {
+        new bootstrap.Modal(document.getElementById('kick-modal')).show()
+    }
+</script>
+
+<div class="modal fade" id="kick-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">정말로 동아리로부터 내보내시겠습니까?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+<!--            <div class="modal-body">-->
+<!--                <form>-->
+
+<!--                </form>-->
+<!--            </div>-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
+                <button type="button" class="btn btn-danger">내보내기</button>
+            </div>
+        </div>
+    </div>
+</div>
