@@ -10,9 +10,9 @@ data class Member(val mid: Int?, val name: String, val cid: Int) {
         if (activity.isAvailable(now)) {
             attendanceRepository.save(
                 Attendance(
-                aid = activity.aid!!,
-                mid = mid!!
-            )
+                    aid = activity.aid!!,
+                    mid = mid!!
+                )
             )
         }
     }

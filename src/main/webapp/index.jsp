@@ -37,7 +37,7 @@
         <a href="#" class="text-white text-decoration-none"
            style="text-align: center;">
             <span class="fs-4" style="font-weight: bold;">
-                    동아리 관리 페이지
+                동아리 관리 페이지
             </span>
         </a>
         <hr>
