@@ -1,13 +1,68 @@
+<%@ page import="kr.ac.hallym.clubmanagementsystem.model.Executive" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>JSP - Hello World</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <link rel="manifest" href="manifest.json"/>
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+
+    <link rel="stylesheet" href="styles/main.css"/>
+    <link rel="stylesheet" href="styles/menu.css"/>
 </head>
+
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<main class="d-flex flex-nowrap" style="height: 100vh;">
+    <div class="left-panel d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+        <a href="#" class="text-white text-decoration-none"
+           style="text-align: center;">
+            <span class="fs-4" style="font-weight: bold;">
+                    동아리 관리 페이지
+            </span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto" id="navigation">
+        </ul>
+        <script>
+            $("#navigation").load("navigation/dashboard.html")
+        </script>
+        <hr>
+        <div class="dropdown">
+        <span class="d-flex align-items-center text-white text-decoration-none" aria-expanded="false">
+            <% Executive user = ((Executive) session.getAttribute("executive")); %>
+            <strong><%= user != null ? user.getUsername() : ""%></strong>
+            <span style="margin-left: auto;">
+                <a href="logout" style="cursor: pointer;" class="fa-solid fa-arrow-right-from-bracket"></a>
+            </span>
+        </span>
+        </div>
+    </div>
+
+    <div id="panel-slot" class="right-panel">
+    </div>
+    <script>
+        $("#panel-slot").load("panel/activity/attendance-view.jsp")
+    </script>
+</main>
 </body>
 </html>

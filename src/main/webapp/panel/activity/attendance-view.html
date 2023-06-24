@@ -1,4 +1,33 @@
 <div class="right-panel-window">
     <h4 style="font-weight: bold;">활동 별 출석 관리</h4>
-
+    <hr>
+    <table id="attendance-table" class="table last-is-btns" width="100%">
+        <thead>
+        <tr>
+            <th>활동명</th>
+            <th>부원 이름</th>
+            <th data-orderable="false"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+            <td>
+                <span class="badge bg-success">출석</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+            <td>
+                <span class="badge bg-danger">결석</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+<script>
+    $('#attendance-table').DataTable();
+</script>
+<span style="height: 5px; display: block;"></span>

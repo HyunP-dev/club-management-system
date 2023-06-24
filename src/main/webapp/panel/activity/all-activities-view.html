@@ -18,7 +18,10 @@
             <td>Row 1 Data 1</td>
             <td>Row 1 Data 2</td>
             <td>
-                <button class="btn btn-tiny btn-secondary" onclick="modifyActivity('Hello', 'hi', '2017-06-01T08:30', '2017-06-01T08:30')">편집</button>
+                <%
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.KOREA)
+                %>
+                <button class="btn btn-tiny btn-secondary" onclick="modifyActivity('<%= name%>', '<%= location%>', '2017-06-01T08:30', '2017-06-01T08:30')">편집</button>
                 <button class="btn btn-tiny btn-danger" onclick="kickMember('Hello')">삭제</button>
             </td>
         </tr>
@@ -78,7 +81,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="/modify-activity" method="post">
                     활동명: <input name="activity-name" class="form-control" style="margin-bottom: 12px;">
                     장소: <input name="activity-location" class="form-control" style="margin-bottom: 12px;">
                     시작 시간:
@@ -86,6 +89,9 @@
                            style="margin-bottom: 12px;">
                     종료 시간:
                     <input name="activity-end" type="datetime-local" class="form-control" style="margin-bottom: 12px;">
+
+                    <input name="aid" value="" hidden="hidden">
+                    <input name="cid" value="" hidden="hidden">
                 </form>
             </div>
             <div class="modal-footer">
@@ -104,8 +110,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
-                <button type="button" class="btn btn-danger">삭제하기</button>
+                <form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
+                    <button type="submit" class="btn btn-danger">삭제하기</button>
+                </form>
             </div>
         </div>
     </div>
