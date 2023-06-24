@@ -20,12 +20,12 @@ class ExecutiveLoginServlet : HttpServlet() {
 
         val executiveRepository = ExecutiveRepository()
         if ((club == null)) {
-            resp.status = HttpURLConnection.HTTP_FORBIDDEN
+            resp.sendError(HttpURLConnection.HTTP_FORBIDDEN)
             return
         }
         val executive = executiveRepository.findBy(club, username)
         if (executive?.password != password) {
-            resp.status = HttpURLConnection.HTTP_FORBIDDEN
+            resp.sendError(HttpURLConnection.HTTP_FORBIDDEN)
             return
         }
         req.session.setAttribute("executive", executive!!)

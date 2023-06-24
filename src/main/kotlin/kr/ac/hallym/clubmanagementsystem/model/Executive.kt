@@ -1,6 +1,7 @@
 package kr.ac.hallym.clubmanagementsystem.model
 
 import kr.ac.hallym.clubmanagementsystem.repository.ActivityRepository
+import kr.ac.hallym.clubmanagementsystem.repository.MemberRepository
 import java.time.LocalDateTime
 
 data class Executive(val cid: Int,
@@ -16,5 +17,10 @@ data class Executive(val cid: Int,
             start = start,
             end = end
         ))
+    }
+
+    fun kick(member: Member) {
+        val memberRepository = MemberRepository()
+        memberRepository.deleteBy(mid = member.mid!!)
     }
 }
