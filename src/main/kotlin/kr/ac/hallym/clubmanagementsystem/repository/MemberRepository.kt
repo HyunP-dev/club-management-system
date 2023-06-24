@@ -1,7 +1,6 @@
 package kr.ac.hallym.clubmanagementsystem.repository
 
 import kr.ac.hallym.clubmanagementsystem.database.Database
-import kr.ac.hallym.clubmanagementsystem.model.Attendance
 import kr.ac.hallym.clubmanagementsystem.model.Member
 
 class MemberRepository {
