@@ -1,3 +1,9 @@
 package kr.ac.hallym.clubmanagementsystem.model
 
-data class Executive(val cid: Int, val username: String, val password: String)
+import java.time.LocalDateTime
+
+data class Executive(val cid: Int, val username: String, val password: String) {
+    fun addActivity(name: String, location: String, start: LocalDateTime, end: LocalDateTime) {
+
+    }
+}
