@@ -2,6 +2,7 @@ package kr.ac.hallym.clubmanagementsystem.repository
 
 import kr.ac.hallym.clubmanagementsystem.database.Database
 import kr.ac.hallym.clubmanagementsystem.model.Club
+import kr.ac.hallym.clubmanagementsystem.model.Executive
 
 class ClubRepository {
     fun save(entity: Club) {
@@ -12,6 +13,23 @@ class ClubRepository {
         query.setString(1, entity.school)
         query.setString(2, entity.name)
         query.execute()
+    }
+
+    fun findBy(school: String, name: String): Club? {
+        val connection = Database.getConnection()!!
+
+        val query = connection.prepareStatement("SELECT * FROM clubs WHERE school=? AND name=?")
+        query.setString(1, school)
+        query.setString(2, name)
+        val rs = query.executeQuery()
+        if (rs.next()) {
+            return Club(
+                cid = rs.getInt("cid"),
+                school = school,
+                name = name
+            )
+        }
+        return null
     }
 
     fun findAll(): List<Club> {
