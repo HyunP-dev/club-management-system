@@ -1,6 +1,5 @@
 package kr.ac.hallym.clubmanagementsystem.controller
 
-import jakarta.servlet.ServletException
 import jakarta.servlet.annotation.WebServlet
 import jakarta.servlet.http.HttpServlet
 import jakarta.servlet.http.HttpServletRequest
@@ -9,7 +8,6 @@ import kr.ac.hallym.clubmanagementsystem.model.Club
 import kr.ac.hallym.clubmanagementsystem.model.Executive
 import kr.ac.hallym.clubmanagementsystem.repository.ClubRepository
 import kr.ac.hallym.clubmanagementsystem.repository.ExecutiveRepository
-import java.io.IOException
 import java.sql.SQLException
 
 
