@@ -5,6 +5,7 @@
 <%@ page import="kr.ac.hallym.clubmanagementsystem.model.Member" %>
 <%@ page import="kr.ac.hallym.clubmanagementsystem.repository.ActivityRepository" %>
 <%@ page import="kr.ac.hallym.clubmanagementsystem.model.Activity" %>
+<%@ page import="kr.ac.hallym.clubmanagementsystem.model.Executive" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="right-panel-window">
     <h4 style="font-weight: bold;">활동 별 출석 관리</h4>

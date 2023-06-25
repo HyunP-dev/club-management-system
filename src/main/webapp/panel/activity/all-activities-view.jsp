@@ -1,3 +1,11 @@
+<%@ page import="kr.ac.hallym.clubmanagementsystem.repository.ActivityRepository" %>
+<%@ page import="kr.ac.hallym.clubmanagementsystem.model.Executive" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="kr.ac.hallym.clubmanagementsystem.model.Activity" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.Locale" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="right-panel-window">
     <h4 style="font-weight: bold;">모든 동아리 활동 조회</h4>
     <hr>
@@ -12,32 +20,36 @@
         </tr>
         </thead>
         <tbody>
+        <%
+//            Executive executive = (Executive) session.getAttribute("executive");
+            Executive executive = new Executive(1, "Alice", "1234");
+            session.setAttribute("executive", executive);
+            ActivityRepository activityRepository = new ActivityRepository();
+            List<Activity> activities = activityRepository.findAll()
+                    .stream()
+                    .filter(activity -> activity.getCid() == executive.getCid())
+                    .collect(Collectors.toList());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.KOREA);
+            for (Activity activity : activities) {
+                String name = activity.getName();
+                String location = activity.getLocation();
+                String start = formatter.format(activity.getStart());
+                String end = formatter.format(activity.getEnd());
+        %>
         <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
+            <td><%= name%></td>
+            <td><%= location%></td>
+            <td><%= start%></td>
+            <td><%= end%></td>
             <td>
-                <%
-                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.KOREA)
-                %>
                 <button class="btn btn-tiny btn-secondary"
-                        onclick="modifyActivity('<%= name%>', '<%= location%>', '2017-06-01T08:30', '2017-06-01T08:30')">
+                        onclick="modifyActivity(<%=activity.getAid()%>, '<%= name%>', '<%= location%>', '<%= start%>', '<%= end%>')">
                     편집
                 </button>
-                <button class="btn btn-tiny btn-danger" onclick="kickMember('Hello')">삭제</button>
+                <button class="btn btn-tiny btn-danger" onclick="deleteActivity(<%= activity.getAid()%>)">삭제</button>
             </td>
         </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-            <td>
-                <button class="btn btn-tiny btn-secondary" onclick="modifyMember('Hello')">편집</button>
-                <button class="btn btn-tiny btn-danger" onclick="kickMember('Hello')">삭제</button>
-            </td>
-        </tr>
+        <% }%>
         </tbody>
     </table>
 </div>
@@ -55,23 +67,26 @@
 <span style="height: 5px; display: block;"></span>
 
 <script>
-    function modifyActivity(name, location, start, end) {
+    function modifyActivity(aid, name, location, start, end) {
         let modal = document.getElementById("modify-activity-modal")
         let input = {
             name: modal.querySelector("input[name='activity-name']"),
             location: modal.querySelector("input[name='activity-location']"),
             start: modal.querySelector("input[name='activity-start']"),
-            end: modal.querySelector("input[name='activity-end']")
+            end: modal.querySelector("input[name='activity-end']"),
+            aid: modal.querySelector("input[name='aid']")
         }
         input.name.value = name
         input.location.value = location
         input.start.value = start
         input.end.value = end
+        input,aid.value = aid
         new bootstrap.Modal(modal).show()
     }
 
-    function deleteActivity() {
+    function deleteActivity(aid) {
         let modal = document.getElementById("delete-activity-modal")
+        modal.querySelector("input[name='aid']").value = aid
         new bootstrap.Modal(modal).show()
     }
 </script>
@@ -84,7 +99,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/modify-activity" method="post">
+                <form action="modify-activity" method="post">
                     활동명: <input name="activity-name" class="form-control" style="margin-bottom: 12px;">
                     장소: <input name="activity-location" class="form-control" style="margin-bottom: 12px;">
                     시작 시간:
@@ -113,7 +128,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
-                <form>
+                <form method="post" action="delete-activity">
+                    <input name="aid" value="" hidden="hidden">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
                     <button type="submit" class="btn btn-danger">삭제하기</button>
                 </form>

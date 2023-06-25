@@ -19,8 +19,15 @@ data class Executive(val cid: Int,
         ))
     }
 
+    fun removeActivity(aid: Int) {
+        val activityRepository = ActivityRepository()
+        if (activityRepository.findBy(aid)!!.cid == cid)
+            activityRepository.deleteByAid(aid)
+    }
+
     fun kick(member: Member) {
         val memberRepository = MemberRepository()
-        memberRepository.deleteBy(mid = member.mid!!)
+        if (memberRepository.findBy(mid = member.mid!!)!!.cid == cid)
+            memberRepository.deleteBy(mid = member.mid)
     }
 }

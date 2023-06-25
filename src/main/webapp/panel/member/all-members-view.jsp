@@ -7,7 +7,7 @@
 <div class="right-panel-window">
     <h4 style="font-weight: bold;">모든 부원 조회</h4>
     <hr>
-    <table id="myTable" class="table last-is-btns" width="100%">
+    <table id="members-table" class="table last-is-btns" width="100%">
         <thead>
         <tr>
             <th></th>
@@ -44,7 +44,7 @@
     }
 </style>
 <script>
-    $('#myTable').DataTable();
+    $('#members-table').DataTable();
 </script>
 <span style="height: 5px; display: block;"></span>
 

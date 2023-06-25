@@ -1,4 +1,4 @@
-package kr.ac.hallym.clubmanagementsystem.controller
+package kr.ac.hallym.clubmanagementsystem.controller.member
 
 import jakarta.servlet.annotation.WebServlet
 import jakarta.servlet.http.HttpServlet

@@ -23,8 +23,8 @@
     </a>
     <div class="submenu collapse" id="events-menus">
         <ul class="nav nav-pills flex-column">
-            <li class="nav-item" onclick="$('#panel-slot').load('panel/activity/all-activities-view.html')">모든 동아리 활동 조회</li>
-            <li class="nav-item" onclick="$('#panel-slot').load('panel/activity/attendance-view.html')">활동 별 출석 관리</li>
+            <li class="nav-item" onclick="$('#panel-slot').load('panel/activity/all-activities-view.jsp')">모든 동아리 활동 조회</li>
+            <li class="nav-item" onclick="$('#panel-slot').load('panel/activity/attendance-view.jsp')">활동 별 출석 관리</li>
 <!--            <li class="nav-item">동아리 활동 변경</li>-->
             <span style="height: 5px;"></span>
         </ul>
@@ -50,14 +50,14 @@
         let navItems = [...document.querySelectorAll(".nav-item")]
         navItems.forEach(navItem => {
             let submenu = navItem.querySelector(".submenu")
-            $(submenu).collapse("show")
-            // $(submenu).collapse("hide")
-            // navItem.onmouseenter = event => {
-            //     $(submenu).collapse("show")
-            // }
-            // navItem.onmouseleave = event => {
-            //     $(submenu).collapse("hide")
-            // }
+            // $(submenu).collapse("show")
+            $(submenu).collapse("hide")
+            navItem.onmouseenter = event => {
+                $(submenu).collapse("show")
+            }
+            navItem.onmouseleave = event => {
+                $(submenu).collapse("hide")
+            }
         })
     }
 </script>
